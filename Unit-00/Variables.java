@@ -18,16 +18,22 @@ public class Variables
 
 		//integer variables
 		byte byteOne = 127;
+		short shortOne = -3456;
+		int intOne = 4;
+		long longOne = 1234567890;
 
 
 		//decimal variables
-
-
+		float floatOne = 12;
+		double doubleOne = 1.23456789098765432;
+		
+		
 		//other integer types
-
+		char charOne = 1;
 
 		//other types
-
+		boolean boolOne = true;
+		String stringOne ="hello";
 
 		//output your information here
 		System.out.println("/////////////////////////////////");

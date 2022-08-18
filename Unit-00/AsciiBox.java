@@ -12,6 +12,33 @@ public class AsciiBox
 	{
 		System.out.println("name \t  date \n\n" );
 		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("------------------------- " );
+		System.out.println("------------------------- " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("------------------------- " );
+		System.out.println("------------------------- " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("------------------------- " );
+		System.out.println("------------------------- " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("+++++++++++++++++++++++++ " );
+		System.out.println("------------------------- " );
+		System.out.println("------------------------- " );
 
 	}
 }
