@@ -25,7 +25,7 @@ public class Variables
 
 		//decimal variables
 		float floatOne = 12;
-		double doubleOne = 1.23456789098765432;
+		double doubleOne = 1.23452;
 		
 		
 		//other integer types
@@ -41,17 +41,23 @@ public class Variables
 		System.out.println("*        integer types          *");
 		System.out.println("*                               *");
 		System.out.println("*8 bit - byteOne = "+byteOne+"\t\t*");
-
-
-
-
-
-
-
-
-
-
-
-
+		System.out.println("*16 bit - shortOne = "+shortOne+"\t*");
+		System.out.println("*32 bit - intOne = "+intOne+"\t\t*");
+		System.out.println("*64 bit - longOne = "+longOne+"\t*");
+		System.out.println("*                               *");
+		System.out.println("*          real types           *");
+		System.out.println("*                               *");
+		System.out.println("*32 bit - floatOne = "+floatOne+"\t*");
+		System.out.println("*64 bit - doubleOne = "+doubleOne+"\t*");
+		System.out.println("*                               *");
+		System.out.println("*     other integer types       *");
+		System.out.println("*                               *");
+		System.out.println("*16 bit - charOne = "+charOne+"\t\t*");
+		System.out.println("*                               *");
+		System.out.println("*         other types           *");
+		System.out.println("*                               *");
+		System.out.println("*booleanOne = "+boolOne+"\t\t*");
+		System.out.println("*stringOne = "+stringOne+"\t\t*");
+		System.out.println("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\");
 	}
 }
