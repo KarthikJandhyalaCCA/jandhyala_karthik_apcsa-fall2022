@@ -14,6 +14,9 @@ public class DistanceRunner
 {
 	public static void main( String[] args )
 	{
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter: ");
+		String x1 = keyboard.nextLine();
 		//add test cases	
 			
 	}

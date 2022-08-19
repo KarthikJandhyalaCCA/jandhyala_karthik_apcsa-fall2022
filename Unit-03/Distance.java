@@ -52,12 +52,12 @@ public class Distance
 	
 	public void print()
 	{
+		out.println("Distance: " + distance);
 	}
 	
 	//complete print or the toString
 
-	public String toString()
-	{
-		return distance.toString();
-	}
+	//public String toString()
+	//{
+	//}
 }
