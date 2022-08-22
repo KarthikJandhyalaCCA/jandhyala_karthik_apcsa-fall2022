@@ -23,18 +23,28 @@ public class MilesPerHour
 
 	public MilesPerHour(int dist, int hrs, int mins)
 	{
+		this.distance = dist;
+		this.hours = hrs;
+		this.minutes = mins;
+		setNums(this.distance, this.hours, this.minutes);
 	}
 
 	public void setNums(int dist, int hrs, int mins)
 	{
+		distance = dist;
+		hours = hrs;
+		minutes = mins;
 	}
 
 	public void calcMPH()
 	{
+		double time = (hours+(minutes/60));
+		mph = (distance/time);
 	}
 
 	public void print()
 	{
+		out.println(distance + " miles in " + hours + "hour(s) and " + minutes + " minutes"+ " = " + mph);
 	}
 	
 	//create a print or toString or both

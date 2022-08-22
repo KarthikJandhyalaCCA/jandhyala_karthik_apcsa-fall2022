@@ -15,9 +15,17 @@ public class DistanceRunner
 	public static void main( String[] args )
 	{
 		Scanner keyboard = new Scanner(System.in);
-		System.out.println("Enter: ");
-		String x1 = keyboard.nextLine();
+		out.println("Enter X1 :: ");
+		int x1 = keyboard.nextInt();
+		out.println("Enter X2 :: ");
+		int x2 = keyboard.nextInt();
+		out.println("Enter Y1 :: ");
+		int y1 = keyboard.nextInt();
+		out.println("Enter Y2 :: ");
+		int y2 = keyboard.nextInt();
 		//add test cases	
+		Distance d = new Distance(x1, y1, x2, y2);
+		out.printf("distance == %.3f\n", d.getDistance());
 			
 	}
 }
