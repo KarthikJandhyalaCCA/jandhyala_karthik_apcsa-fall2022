@@ -8,6 +8,8 @@ public class FirstLastVowel
 {
    public static String go( String a )
 	{
-		return "add code here";
+	   int index = 0;
+	   //if (a.index(index) == "#") 
+	   return "add code here";
 	}
 }
