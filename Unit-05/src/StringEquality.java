@@ -30,13 +30,25 @@ public class StringEquality
 		wordTwo = two;
 	}
 
-	public boolean checkEquality( )
+	public boolean checkEquality()
 	{
-		return false;
+		if (wordOne.equals(wordTwo)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
 	}
 
 	public String toString()
 	{
-		return wordOne + " does not have the same letters as " + wordTwo + "\n";
+		checkEquality();
+		if (checkEquality() == false) {
+			return wordOne + " does not have the same letters as " + wordTwo + "\n";
+		}
+		else {
+			return wordOne + " has the same letters as " + wordTwo + "\n";
+		}
 	}
 }
