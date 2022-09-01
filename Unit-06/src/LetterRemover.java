@@ -43,6 +43,6 @@ public class LetterRemover
 	public String toString()
 	{
 		String cleaned = removeLetters();
-		return cleaned + " - letter to remove " + lookFor;
+		return cleaned;
 	}
 }
