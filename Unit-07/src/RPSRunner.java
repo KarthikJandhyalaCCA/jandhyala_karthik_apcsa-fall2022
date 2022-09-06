@@ -10,19 +10,25 @@ public class RPSRunner
 	public static void main(String args[])
 	{
 		Scanner keyboard = new Scanner(System.in);
-		char response;
+		String player;
+		String check = "y";
+		RockPaperScissors game = new RockPaperScissors();
+		do {
+		out.println("Rock-Paper-Scissors - pick your weapon[R,P,S]:: ");
+		player = keyboard.next();
+		out.println("Player chose " + player);
+		out.println("Computer chooses " + game.computerChoice());
+		out.println(game);
+		out.println("Do you want to play again? ");
+		check = keyboard.next();
+		}
+		while(check == "y");
+		
 		
 		//add in a do while loop after you get the basics up and running
-		
-			String player = "";
-		
-			out.print("type in your prompt [R,P,S] :: ");
+
 			
 			//read in the player value
-		
-			RockPaperScissors game = new RockPaperScissors();		
+	
 	}
 }
-
-
-

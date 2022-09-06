@@ -12,25 +12,75 @@ public class RockPaperScissors
 
 	public RockPaperScissors()
 	{
+		setPlayers("R");
 	}
 
 	public RockPaperScissors(String player)
 	{
+		setPlayers(player);
 	}
 
 	public void setPlayers(String player)
 	{
+		playChoice = player;
+	}
+	
+	public String computerChoice() {
+		determineWinner();
+		return compChoice;
 	}
 
 	public String determineWinner()
 	{
-		String winner="";
+		String winner = "";
+		double choice = (3*Math.random());
+		int decision = (int) choice;
+		if (decision == 0) {
+			compChoice = "R";
+		}
+		if (decision == 1) {
+			compChoice = "P";
+		}
+		if (decision == 2) {
+			compChoice = "S";
+		}
+		if (playChoice.equals(compChoice)) {
+			winner="!Draw Game!";
+		}
+		else {
+			if (compChoice == "R") {
+				if (playChoice == "P") {
+					winner="Player wins!";
+				}
+				else {
+					winner="Computer wins!";
+				}
+			}
+			else if (compChoice == "P") {
+				if (playChoice == "S") {
+					winner="Player wins!";
+				}
+				else {
+					winner="Computer wins!";
+				}
+			}
+			else if (compChoice == "S") {
+				if (playChoice == "R") {
+					winner="Player wins!";
+				}
+				else {
+					winner="Computer wins!";
+				}
+			}
+		}
 		return winner;
 	}
-
+	
+	
+	
 	public String toString()
 	{
-		String output="";
+		String output = determineWinner();
 		return output;
 	}
 }
