@@ -37,41 +37,45 @@ public class RockPaperScissors
 		int decision = (int) choice;
 		if (decision == 0) {
 			compChoice = "R";
+			if (playChoice.equals(compChoice)) {
+				winner="!Draw Game!";
+			}
+			else{
+					if (playChoice == "P") {
+						winner="Player wins!";
+					}
+					else {
+						winner="Computer wins!";
+					}
+			}
 		}
 		if (decision == 1) {
 			compChoice = "P";
-		}
-		if (decision == 2) {
-			compChoice = "S";
-		}
-		if (playChoice.equals(compChoice)) {
-			winner="!Draw Game!";
-		}
-		else {
-			if (compChoice == "R") {
-				if (playChoice == "P") {
-					winner="Player wins!";
-				}
-				else {
-					winner="Computer wins!";
-				}
+			if (playChoice.equals(compChoice)) {
+				winner="!Draw Game!";
 			}
-			else if (compChoice == "P") {
+			else{
 				if (playChoice == "S") {
 					winner="Player wins!";
 				}
 				else {
 					winner="Computer wins!";
 				}
+		}
+		}
+		if (decision == 2) {
+			compChoice = "S";
+			if (playChoice.equals(compChoice)) {
+				winner="!Draw Game!";
 			}
-			else if (compChoice == "S") {
-				if (playChoice == "R") {
+			else{
+				if (playChoice == "P") {
 					winner="Player wins!";
 				}
 				else {
 					winner="Computer wins!";
 				}
-			}
+		}
 		}
 		return winner;
 	}
