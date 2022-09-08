@@ -16,6 +16,7 @@ public class RPSRunner
 		do {
 		out.println("Rock-Paper-Scissors - pick your weapon[R,P,S]:: ");
 		player = keyboard.next();
+		game.setPlayers(player);
 		out.println("Player chose " + player);
 		out.println("Computer chooses " + game.computerChoice());
 		out.println(game);
