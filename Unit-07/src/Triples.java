@@ -7,11 +7,11 @@ import static java.lang.System.*;
 public class Triples
 {
    private int number;
-   private int a_val, b_val, c_val;
+   //private int a_val, b_val, c_val;
 
 	public Triples()
 	{
-		this(0);
+		setNum(0);
 	}
 
 	public Triples(int num)
@@ -24,7 +24,7 @@ public class Triples
 		number = num;
 	}
 	
-	public String pythagoreanT(int a, int b, int c) {
+	/*public String pythagoreanT(int a, int b, int c) {
 		if (((a%2 == 1) && (b%2 ==0)) || ((a%2 == 0) && (b%2 ==1))) {
 			boolean checkGCF = greatestCommonFactor(a, b, c);
 			if (checkGCF == false) {
@@ -32,13 +32,13 @@ public class Triples
 			}
 		}
 		return "";
-	}
+	}*/
 	
 	private boolean greatestCommonFactor(int a, int b, int c)
 	{
 		int max = 1;
-		for (int i = 1; i <= a && i <= b && i <=c; ++i) {
-		      if (a % i == 0 && b % i == 0 && a%i == 0) {
+		for (int i = 1; i <= a || i <= b || i <=c; i++) {
+		      if (a % i == 0 && b % i == 0 && c%i == 0) {
 		    	  max = i;
 		      }
 		}
@@ -49,11 +49,12 @@ public class Triples
 	public String toString()
 	{
 		String output="";
-		for (a_val = 0; a_val < number; a_val++) {
-			for (b_val = 0; b_val < number; b_val++) {
-				for (c_val = 1; c_val<number; c_val+=2) {
-					output = pythagoreanT(a_val, b_val, c_val);
-					return output+"\n";
+		for (int a = 1; a <= number; a++) {
+			for (int b = a+1; b <= number; b++) {
+				for (int c = b+1; c<=number; c++) {
+					if(a*a+b*b==c*c && greatestCommonFactor(a,b,c)){
+						 output = output + a + " " + b + " " + c + "\n";
+					}
 				}
 			}
 		}

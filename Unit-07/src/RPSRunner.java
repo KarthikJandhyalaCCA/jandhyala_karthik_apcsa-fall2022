@@ -11,7 +11,6 @@ public class RPSRunner
 	{
 		Scanner keyboard = new Scanner(System.in);
 		String player;
-		String check = "y";
 		RockPaperScissors game = new RockPaperScissors();
 		do {
 		out.println("Rock-Paper-Scissors - pick your weapon[R,P,S]:: ");
@@ -21,9 +20,8 @@ public class RPSRunner
 		out.println("Computer chooses " + game.computerChoice());
 		out.println(game);
 		out.println("Do you want to play again? ");
-		check = keyboard.next();
 		}
-		while(check == "y");
+		while ((keyboard.next().equals("y")));
 		
 		
 		//add in a do while loop after you get the basics up and running
