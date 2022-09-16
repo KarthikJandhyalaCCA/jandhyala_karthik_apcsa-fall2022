@@ -31,6 +31,17 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		Card[] cards = new Card[ranks.length * suits.length * values.length];
+		int i = 0;
+		for (int r = 0; r<ranks.length; r++) {
+			for (int s = 0; s<suits.length; s++) {
+				for (int v= 0; v<values.length; v++) {
+					cards[i] = new Card(ranks[r], suits[s], values[v]);
+					i++;
+				}
+			}
+		}
+		shuffle();
 	}
 
 
@@ -40,6 +51,12 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(cards.length == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
