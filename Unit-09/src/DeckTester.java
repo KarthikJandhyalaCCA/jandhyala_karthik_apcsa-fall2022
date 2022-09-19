@@ -9,5 +9,6 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		Deck test1 = new Deck(["jack"])
 	}
 }
