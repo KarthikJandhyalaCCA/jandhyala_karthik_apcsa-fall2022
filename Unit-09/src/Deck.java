@@ -31,7 +31,7 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		//cards = [ranks.length * suits.length * values.length];
+		cards = new Card[ranks.length * suits.length * values.length];
 		int i = 0;
 		for (int r = 0; r<ranks.length; r++) {
 			for (int s = 0; s<suits.length; s++) {
@@ -74,6 +74,7 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class Deck {
 		}
 		else {
 			size = size-1;
-			return cards[size-1];
+			return cards[size];
 		}
 	}
 
