@@ -71,6 +71,9 @@ public class Shuffler {
 			shuffled[k] = values[j];
 			k+=2;
 		}
+		for (int i = 0; i<values.length; i++) {
+			values[i] = shuffled[i];
+		}
 		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
 	}
@@ -91,13 +94,12 @@ public class Shuffler {
 		double r;
 		int r_cast;
 		int temp;
-		for (int k = 51; k>0; k++) {
-			r = 52 * Math.random();
+		for (int k  = 0; k<values.length; k++) {
+			r = (values.length) * Math.random();
 			r_cast = (int) r;
 			temp = values[k];
 			values[k] = values[r_cast];
 			values[r_cast] = values[k];
-			
 		}
 	}
 }
