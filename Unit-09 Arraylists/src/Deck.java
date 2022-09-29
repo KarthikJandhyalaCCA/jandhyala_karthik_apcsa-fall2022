@@ -31,6 +31,16 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		int i = 0;
+		for (int r = 0; r<ranks.length; r++) {
+			for (int s = 0; s<suits.length; s++) {
+				for (int v= 0; v<values.length; v++) {
+					cards.add(new Card(ranks[r], suits[s], values[v]));
+					i++;
+				}
+			}
+		}
+		shuffle();
 	}
 
 
@@ -40,6 +50,12 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		if(cards.size() == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**
@@ -48,6 +64,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return cards.size();
 	}
 
 	/**
@@ -56,6 +73,31 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		Shuffler shuffle = new Shuffler();
+		double r;
+		int r_cast;
+		Card temp;
+		boolean check = true;
+		int k  = 0;
+		Card[] arr = new Card[cards.length];
+		/*for (int i = 0; i<arr.length; i++) {
+			arr[i] = -1;
+		}*/
+		while (k<cards.length) {
+			r = (cards.length) * Math.random();
+			r_cast = (int) r;
+			for (int j = 0; j<arr.length; j++) {
+				/*if (arr[j] == r_cast) {
+					check = false;
+				}*/
+			}
+			if (check == true) {
+				temp = cards[k];
+				cards[k] = cards[r_cast];
+				cards[r_cast] = temp;
+				k++;
+			}
+		}
 	}
 
 	/**
