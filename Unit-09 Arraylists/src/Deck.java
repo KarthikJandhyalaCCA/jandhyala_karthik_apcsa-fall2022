@@ -31,6 +31,7 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new ArrayList<Card>();
 		int i = 0;
 		for (int r = 0; r<ranks.length; r++) {
 			for (int s = 0; s<suits.length; s++) {
@@ -79,12 +80,12 @@ public class Deck {
 		Card temp;
 		boolean check = true;
 		int k  = 0;
-		Card[] arr = new Card[cards.length];
+		Card[] arr = new Card[cards.size()];
 		/*for (int i = 0; i<arr.length; i++) {
 			arr[i] = -1;
 		}*/
-		while (k<cards.length) {
-			r = (cards.length) * Math.random();
+		while (k<cards.size()) {
+			r = (cards.size()) * Math.random();
 			r_cast = (int) r;
 			for (int j = 0; j<arr.length; j++) {
 				/*if (arr[j] == r_cast) {
@@ -92,9 +93,12 @@ public class Deck {
 				}*/
 			}
 			if (check == true) {
-				temp = cards[k];
-				cards[k] = cards[r_cast];
-				cards[r_cast] = temp;
+				//temp = cards[k];
+				temp = cards.get(k);
+				//cards[k] = cards[r_cast];
+				cards.set(k, cards.get(r_cast));
+				//cards[r_cast] = temp;
+				cards.set(r_cast, temp);
 				k++;
 			}
 		}
@@ -107,6 +111,14 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		size = cards.size();
+		if (size == 0) {
+			return null;
+		}
+		else {
+			size = size-1;
+			return cards.get(size);
+		}
 	}
 
 	/**
