@@ -14,13 +14,19 @@ public class ToyStore
 
 	public ToyStore()
 	{
-		loadToys("");
+		toyList = new ArrayList<Toy>();
 	}
 
 	public void loadToys( String toys )
 	{
-		Toy t = new Toy(toys);
-		toyList.add(t);
+		for( String s: toys.split( " " )) {
+			Toy t = getThatToy(s);
+			if(t==null) {
+				toyList.add(new Toy(s));
+			}
+			else
+				t.setCount(t.getCount()+1);
+		}
 	}
   
   	public Toy getThatToy( String nm )
@@ -49,14 +55,18 @@ public class ToyStore
   
   	public void sortToysByCount()
   	{
-  		int[] arr = new int[toyList.size()];
   		for (int i = 0; i<toyList.size(); i++) {
-  			
+  			for (int j = 1; j<toyList.size(); j++) {
+  				if (toyList.get(j).getCount()<toyList.get(j-1).getCount()) {
+  					Collections.swap(toyList, j, j-1);
+  				}
+  			}
   		}
   	}  
   	  
 	public String toString()
 	{
-	   return "";
+	   sortToysByCount();
+	   return toyList.toString() + "\nmax == " + getMostFrequentToy();
 	}
 }
