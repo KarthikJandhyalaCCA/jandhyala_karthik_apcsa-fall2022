@@ -8,7 +8,8 @@ public interface Monster
 {
 	public int getHowBig();
 	public String getName();
-	public boolean isBigger(Monster other);	
-	public boolean isSmaller(Monster other);
-	public boolean namesTheSame(Monster other);
+	public boolean isBigger(Monster other2);	
+	public boolean isSmaller(Monster other2);
+	public boolean namesTheSame(Monster other2);
+	public String toString(Monster other2);
 }

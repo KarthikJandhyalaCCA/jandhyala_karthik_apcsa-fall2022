@@ -11,20 +11,22 @@ public class MonsterRunner
 	{
 		Scanner keyboard = new Scanner(System.in);
 		
-		//ask for name and size
-		out.print("\nEnter the name :: ");
-		String word = keyboard.next();	
+		out.print("\nEnter the name for Monster 1:: ");
+		String word1 = keyboard.next();	
 		
-		out.print("\nEnter the size :: ");
-		int num = keyboard.nextInt();
+		out.print("\nEnter the size for Monster 1:: ");
+		int num1 = keyboard.nextInt();
 		
-		Monster m1 = new Skeleton(num, word);
-		//w.printTriangle(word);
+		Monster m1 = new Skeleton(num1, word1);
 		
-		//instantiate monster one
+		out.print("\nEnter the name for Monster 2:: ");
+		String word2 = keyboard.next();	
 		
-		//ask for name and size
+		out.print("\nEnter the size for Monster 2:: ");
+		int num2 = keyboard.nextInt();
 		
-		//instantiate monster two
+		Monster m2 = new Skeleton(num2, word2);
+		
+		out.println(m1.toString(m2));
 	}
 }
