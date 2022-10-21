@@ -94,8 +94,8 @@ public class Card {
 	 */
 	@Override
 	public String toString() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 		String PV = String.valueOf(pointValue);
 		return rank + " of " + suit + " (point value = " + PV + " )";
+		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
 	}
 }
