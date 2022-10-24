@@ -31,17 +31,16 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		cards = new Card[ranks.length * suits.length * values.length];
+		cards = new Card[ranks.length * suits.length];
 		int i = 0;
 		for (int r = 0; r<ranks.length; r++) {
 			for (int s = 0; s<suits.length; s++) {
-				for (int v= 0; v<values.length; v++) {
-					cards[i] = new Card(ranks[r], suits[s], values[v]);
-					i++;
-				}
+				cards[i] = new Card(ranks[r], suits[s], values[r]);
+				i++;
 			}
 		}
 		shuffle();
+		size=cards.length;
 	}
 
 
@@ -99,6 +98,7 @@ public class Deck {
 				k++;
 			}
 		}
+		size = cards.length;
 	}
 	
 
@@ -109,7 +109,6 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		size = cards.length;
 		if (size == 0) {
 			return null;
 		}

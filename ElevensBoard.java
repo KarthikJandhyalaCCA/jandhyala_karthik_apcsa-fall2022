@@ -54,7 +54,7 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		if(containsPairSum11(selectedCards) && containsJQK(selectedCards)){
+		if(containsPairSum11(selectedCards) || containsJQK(selectedCards)){
             return true;
         }
         return false;
@@ -89,9 +89,37 @@ public class ElevensBoard extends Board {
 	private boolean containsPairSum11(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		if(selectedCards.size() == 2){
-            if(selectedCards.get(0) + selectedCards.get(1) == 11){
+			if ((cardAt(selectedCards.get(0)).rank() =="1") && (cardAt(selectedCards.get(1)).rank() =="10") || (cardAt(selectedCards.get(0)).rank() =="10") && (cardAt(selectedCards.get(1)).rank() =="1")){
                 return true;
             }
+            if ((cardAt(selectedCards.get(0)).rank() =="2") && (cardAt(selectedCards.get(1)).rank() =="9")  || (cardAt(selectedCards.get(0)).rank() =="9") && (cardAt(selectedCards.get(1)).rank() =="2")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="3") && (cardAt(selectedCards.get(1)).rank() =="8")  || (cardAt(selectedCards.get(0)).rank() =="8") && (cardAt(selectedCards.get(1)).rank() =="3")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="4") && (cardAt(selectedCards.get(1)).rank() =="7")  || (cardAt(selectedCards.get(0)).rank() =="7") && (cardAt(selectedCards.get(1)).rank() =="4")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="5") && (cardAt(selectedCards.get(1)).rank() =="6")  || (cardAt(selectedCards.get(0)).rank() =="6") && (cardAt(selectedCards.get(1)).rank() =="5")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="6") && (cardAt(selectedCards.get(1)).rank() =="5")  || (cardAt(selectedCards.get(0)).rank() =="5") && (cardAt(selectedCards.get(1)).rank() =="6")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="7") && (cardAt(selectedCards.get(1)).rank() =="4")  || (cardAt(selectedCards.get(0)).rank() =="4") && (cardAt(selectedCards.get(1)).rank() =="7")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="8") && (cardAt(selectedCards.get(1)).rank() =="3")  || (cardAt(selectedCards.get(0)).rank() =="3") && (cardAt(selectedCards.get(1)).rank() =="8")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="9") && (cardAt(selectedCards.get(1)).rank() =="2")  || (cardAt(selectedCards.get(0)).rank() =="2") && (cardAt(selectedCards.get(1)).rank() =="9")){
+                return true;
+            }
+			if ((cardAt(selectedCards.get(0)).rank() =="10") && (cardAt(selectedCards.get(1)).rank() =="1") || (cardAt(selectedCards.get(0)).rank() =="1") && (cardAt(selectedCards.get(1)).rank() =="10")){
+                return true;
+            }
+			
         }
         return false;
 	}
@@ -107,7 +135,22 @@ public class ElevensBoard extends Board {
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		if(selectedCards.size() == 3){
-            if (selectedCards.get(0) + selectedCards.get(1) + selectedCards.get(2) == 0){
+            if ((cardAt(selectedCards.get(0)).rank() =="jack") && (cardAt(selectedCards.get(1)).rank() =="queen") && (cardAt(selectedCards.get(2)).rank() =="king")){
+                return true;
+            }
+            else if ((cardAt(selectedCards.get(0)).rank() =="jack") && (cardAt(selectedCards.get(2)).rank() =="queen") && (cardAt(selectedCards.get(1)).rank() =="king")){
+                return true;
+            }
+            else if ((cardAt(selectedCards.get(1)).rank() =="jack") && (cardAt(selectedCards.get(0)).rank() =="queen") && (cardAt(selectedCards.get(2)).rank() =="king")){
+                return true;
+            }
+            else if ((cardAt(selectedCards.get(1)).rank() =="jack") && (cardAt(selectedCards.get(2)).rank() =="queen") && (cardAt(selectedCards.get(0)).rank() =="king")){
+                return true;
+            }
+            else if ((cardAt(selectedCards.get(2)).rank() =="jack") && (cardAt(selectedCards.get(1)).rank() =="queen") && (cardAt(selectedCards.get(0)).rank() =="king")){
+                return true;
+            }
+            else if ((cardAt(selectedCards.get(2)).rank() =="jack") && (cardAt(selectedCards.get(0)).rank() =="queen") && (cardAt(selectedCards.get(1)).rank() =="king")){
                 return true;
             }
         }
