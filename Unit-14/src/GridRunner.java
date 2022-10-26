@@ -11,5 +11,15 @@ public class GridRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("Enter the row size: ");
+		int row = keyboard.nextInt();
+		System.out.println("Enter the column size: ");
+		int column = keyboard.nextInt();
+		String[] values = new String[row*column];
+		int i = 0;
+		while(i<(row*column)) {
+			int x = (int) Math.random();
+		}
 	}
 }

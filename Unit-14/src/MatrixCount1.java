@@ -1,7 +1,3 @@
-//(c) A+ Computer Science
-//www.apluscompsci.com
-//Name -
-
 import java.util.*;
 import java.io.*; 
 
