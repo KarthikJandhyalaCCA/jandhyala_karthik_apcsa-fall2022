@@ -19,7 +19,12 @@ public class GridRunner
 		String[] values = new String[row*column];
 		int i = 0;
 		while(i<(row*column)) {
-			int x = (int) Math.random();
+			int x = (int) (Math.random()*100);
+			if ((x>47 && x<58) || (x>64 && x<91)){
+				values[i] = String.valueOf(x);
+				i++;
+			}
 		}
+		Grid g = new Grid(row, column, values);
 	}
 }
