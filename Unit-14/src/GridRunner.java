@@ -26,5 +26,6 @@ public class GridRunner
 			}
 		}
 		Grid g = new Grid(row, column, values);
+		out.println(g.toString(values));
 	}
 }

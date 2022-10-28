@@ -12,7 +12,8 @@ public class Grid
    //load vals into the rows x cols grid randomly
 	public Grid(int rows, int cols, String[] vals)
 	{
-		List<Integer> check_val = new ArrayList<>();
+		grid = new String[rows][cols];
+		/*List<Integer> check_val = new ArrayList<>();
 		for (int r = 0; r<rows; r++) {
 			int c = 0;
 			while (c<cols) {
@@ -29,13 +30,45 @@ public class Grid
 					c++;
 				}
 			}
+		}*/
+		int i = 0;
+		for (int r = 0; r<rows; r++) {
+			for (int c = 0; c<cols; c++) {
+				int temp = Integer.parseInt(vals[i]);
+				char temp1 = (char) temp; 
+				grid[r][c] = String.valueOf(temp1);
+				i++;
+			}
+
 		}
 	}
 
 	//find out which of the vals occurs the most
 	public String findMax(String[] vals)
 	{
-		return "nothing yet";
+		int count = 0;
+		int[] check = new int[vals.length];
+		String character = "";
+		for (int i = 0; i<vals.length; i++) {
+			int pass = 0;
+			for (int j = 0; j<vals.length; j++) {
+				if(vals[i] == vals[j]) {
+					 pass++;
+				}
+			}
+			check[i] = pass;
+		}
+		int check_pass = 0;
+		for (int i = 0; i<vals.length; i++) {
+			if (check[i] > check_pass) {
+				check_pass = i;//PROBLEM
+			}
+		}
+		int temp = Integer.parseInt(vals[check_pass]);
+		char temp1 = (char) temp; 
+		character = String.valueOf(temp1);
+		//character = vals[check_pass];
+		return character + " count is " + count;
 	}
 
 	//returns a count of how many times val occurs in the matrix
@@ -53,15 +86,16 @@ public class Grid
 	}
 
 	//display the grid
-	public String toString()
+	public String toString(String[] vals)
 	{
 		String output="";
 		for (int i = 0; i<grid.length; i++) {
-			for (int j = 0; j<grid[0].length; i++) {
+			for (int j = 0; j<grid[0].length; j++) {
 				output += grid[i][j] + " ";
 			}
 			output += "\n";
 		}
+		output += "\n" + findMax(vals);
 		return output;
 	}
 }
