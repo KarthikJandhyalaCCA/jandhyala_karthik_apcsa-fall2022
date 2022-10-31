@@ -46,7 +46,7 @@ public class Grid
 	//find out which of the vals occurs the most
 	public String findMax(String[] vals)
 	{
-		int count = 0;
+		/*int count = 0;
 		int[] check = new int[vals.length];
 		String character = "";
 		for (int i = 0; i<vals.length; i++) {
@@ -68,7 +68,21 @@ public class Grid
 		char temp1 = (char) temp; 
 		character = String.valueOf(temp1);
 		//character = vals[check_pass];
-		return character + " count is " + count;
+		return character + " count is " + count;*/
+		
+		int temp = Integer.parseInt(vals[0]);
+		char temp1 = (char) temp; 
+		String max = String.valueOf(temp1);
+		for (int i = 0; i<vals.length; i++) {
+			int check = Integer.parseInt(vals[i]);
+			char check1 = (char) check; 
+			String test = String.valueOf(check1);
+			if (countVals(test) > countVals(max)) {
+				max = test;
+			}
+		}
+		return max + " has the greatest count, with a count of : " + countVals(max);
+	  	//return max;
 	}
 
 	//returns a count of how many times val occurs in the matrix
@@ -76,8 +90,8 @@ public class Grid
 	{
 		int count  = 0;
 		for (int i = 0; i<grid.length; i++) {
-			for (int j = 0; j<grid[0].length; i++) {
-				if (grid[i][j] == val) {
+			for (int j = 0; j<grid[0].length; j++) {
+				if (grid[i][j].equals(val)) {
 					count++;
 				}
 			}
@@ -96,6 +110,10 @@ public class Grid
 			output += "\n";
 		}
 		output += "\n" + findMax(vals);
+		output += "\n" + "A has a count of " + countVals("A");
+		output += "\n" + "F has a count of " + countVals("F");
+		output += "\n" + "U has a count of " + countVals("U");
+		output += "\n" + "6 has a count of " + countVals("6");
 		return output;
 	}
 }

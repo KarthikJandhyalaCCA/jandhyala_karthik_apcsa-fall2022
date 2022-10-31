@@ -28,7 +28,7 @@ public class Maze
 		exitFound=false;
 		maze = new int[size][size];
 		int spot=0;
-		//out.println(line);
+		out.println(line);
 		for(int r= 0; r<maze.length; r++)
 		{
 			for(int c =0; c<maze[r].length; c++)
