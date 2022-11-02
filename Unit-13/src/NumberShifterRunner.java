@@ -12,6 +12,13 @@ public class NumberShifterRunner
 {
 	public static void main( String args[] ) throws IOException
 	{
+		Scanner keyboard= new Scanner(System.in);
+		System.out.println("Enter the array size: ");
+		int size = keyboard.nextInt();
+		NumberShifter NS = new NumberShifter();
+		int[] array = NS.makeLucky7Array(size);
+		NS.shiftEm(array);
+		System.out.println("Here is the shifted array: " + Arrays.toString(array));
 		//add test cases
 	}
 }
