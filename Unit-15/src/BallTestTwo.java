@@ -25,7 +25,7 @@ class BallTestTwo extends Canvas implements Runnable
 		
 		ball = new Ball(100,100,30,50,Color.BLUE,5,6);
 		
-		/*Ball four = new Ball(100,100,30,50,Color.BLUE);
+		Ball four = new Ball(100,100,30,50,Color.BLUE);
 		out.println(ball);
 		
 		Ball five = new Ball(100,100,30,50,Color.BLUE,5,6);
@@ -37,14 +37,14 @@ class BallTestTwo extends Canvas implements Runnable
 		
 		out.println(five.equals(four));		
 		
-		out.println(five.equals(five));		*/					
+		out.println(five.equals(five));				
 
 		//test the Ball thoroughly
 		
 
 		//test all constructors
 		
-		/*Ball ball = new Ball();
+		Ball ball = new Ball();
 		out.println(ball);
 		
 		ball = new Ball(100,90);
@@ -57,7 +57,7 @@ class BallTestTwo extends Canvas implements Runnable
 		out.println(ball);
 		
 		ball = new Ball(100,100,30,50,Color.BLUE,5,6);
-		out.println(ball);*/
+		out.println(ball);
 		
 		new Thread(this).start();
 	}

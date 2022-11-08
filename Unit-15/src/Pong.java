@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
+import static java.lang.System.out;
+
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 
@@ -25,13 +27,15 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	public Pong()
 	{
 		//set up all variables related to the game
+		
+		ball = new Ball(100,100,30,50,Color.BLUE,5,6);
 
-
-
+		leftPaddle = new Paddle(100,100,30,50,Color.BLUE,6);
+		
+		rightPaddle = new Paddle(100,100,30,50,Color.BLUE,6);
 
 		keys = new boolean[4];
 
-    
     	setBackground(Color.WHITE);
 		setVisible(true);
 		
@@ -66,38 +70,53 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		//see if ball hits left wall or right wall
 		if(!(ball.getX()>=10 && ball.getX()<=780))
 		{
-			ball.setXSpeed(0);
-			ball.setYSpeed(0);
+			ball.setXS(0);
+			ball.setYS(0);
 		}
 
 		
 		//see if the ball hits the top or bottom wall 
-
-
+		if(!(ball.getY()>=10 && ball.getY()<=780))
+		{
+			ball.setXS(0);
+			ball.setYS(0);
+		}
 
 
 		//see if the ball hits the left paddle
-		
+		if(ball.getX() <= (leftPaddle.getX() + leftPaddle.getWidth() + Math.abs(ball.getXS()))
+			&& (ball.getY() >= (leftPaddle.getY() + leftPaddle.getWidth()) 
+			|| (ball.getY() + ball.getHeight() >= leftPaddle.getY() 
+			&& (ball.getY() + ball.getHeight() < leftPaddle.getY() + leftPaddle.getHeight()))) ) {
+			if(ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXS())) {
+				ball.setYS(-ball.getYS());
+			}
+			else {
+				ball.setYS(-ball.getYS());
+			}
+		}
 		
 		
 		//see if the ball hits the right paddle
 		
-		
+		if(ball.getX() >= (rightPaddle.getX() + rightPaddle.getWidth() + Math.abs(ball.getXS()))
+				&& (ball.getY() >= (rightPaddle.getY() + rightPaddle.getWidth()) 
+				|| (ball.getY() + ball.getHeight() >= leftPaddle.getY() 
+				&& (ball.getY() + ball.getHeight() < rightPaddle.getY() + rightPaddle.getHeight()))) ) {
+				if(ball.getX() >= rightPaddle.getX() + rightPaddle.getWidth() - Math.abs(ball.getXS())) {
+					ball.setYS(-ball.getYS());
+				}
+				else {
+					ball.setYS(-ball.getYS());
+				}
+			}
 		
 
 
 		//see if the paddles need to be moved
-
-
-
-
-
-
-
-
-
-
-
+		
+		
+		
 
 
 
