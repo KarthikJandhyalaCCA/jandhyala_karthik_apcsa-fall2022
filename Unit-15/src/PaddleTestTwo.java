@@ -40,7 +40,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		
 		//instantiate a right Paddle
 		
-		rightPaddle = new Paddle(100,100,30,50,Color.BLUE,6);
+		rightPaddle = new Paddle(400,100,30,50,Color.BLUE,6);
 		out.println(rightPaddle);
 
 		keys = new boolean[5];
@@ -79,20 +79,23 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		{
 			//move left paddle up and draw it on the window
 			leftPaddle.moveUpAndDraw(window);
+			leftPaddle.draw(window);
 		}
 		if(keys[1] == true)
 		{
 			//move left paddle down and draw it on the window
 			leftPaddle.moveDownAndDraw(window);
-
+			leftPaddle.draw(window);
 		}
 		if(keys[2] == true)
 		{
 			rightPaddle.moveUpAndDraw(window);
+			rightPaddle.draw(window);
 		}
 		if(keys[3] == true)
 		{
 			rightPaddle.moveDownAndDraw(window);
+			rightPaddle.draw(window);
 		}
 	}
 
