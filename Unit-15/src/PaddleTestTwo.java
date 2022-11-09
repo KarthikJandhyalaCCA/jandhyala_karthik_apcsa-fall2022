@@ -68,6 +68,7 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 		if(!(ball.getX()>=10 && ball.getX()<=550))
 		{
 			ball.setXS(-ball.getXS());
+			
 		}
 
 		if(!(ball.getY()>=10 && ball.getY()<=450))

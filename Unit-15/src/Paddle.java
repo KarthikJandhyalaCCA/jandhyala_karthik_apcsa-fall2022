@@ -22,10 +22,10 @@ public class Paddle extends Block
        speed =5;
    }
    
-   public Paddle(int x, int y, int w)
+   public Paddle(int x, int y, int s)
    {
-	   super(x, y, w, 0);
-       speed =5;
+	   super(x, y);
+       speed =s;
    }
    
    public Paddle(int x, int y, int w, int h)
@@ -45,12 +45,6 @@ public class Paddle extends Block
    }
    //add the other Paddle constructors
 
-
-
-
-
-
-
    public void setSpeed(int s)
    {
 	   speed = s;
@@ -60,16 +54,20 @@ public class Paddle extends Block
 
    public void moveUpAndDraw(Graphics window)
    {
-	   draw(window, getColor());
-	   setY(getY() + speed);
-	   draw(window, getColor());
+	   if (this.getY() >0) {
+		   window.clearRect(getX(), getY(), getWidth(), getHeight());
+		   setY(getY()-speed);
+		   draw(window);
+	   }
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-	   draw(window, getColor());
-	   setY(getY() - speed);
-	   draw(window, getColor());
+	   if (this.getY()<400) {
+		   window.clearRect(getX(), getY(), getWidth(), getHeight());
+		   setY(getY()+speed);
+		   draw(window);
+	   }
    }
 
    //add get methods
