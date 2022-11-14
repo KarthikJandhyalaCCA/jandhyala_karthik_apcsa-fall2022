@@ -36,7 +36,7 @@ class SpeedUpBall extends BlinkyBall
    public SpeedUpBall(int x, int y, int wid, int ht, Color col, int xSpd, int ySpd)
    {
 
-	   super(x,y, 0, 0 ,col, xSpd, ySpd);
+	   super(x,y, wid, ht ,col, xSpd, ySpd);
 
 
    }
@@ -44,20 +44,20 @@ class SpeedUpBall extends BlinkyBall
    public void setXSpeed( int xSpd )
    {
 	   if (this.getXS() >0) {
-		   super.setXS(getXS()+3);
+		   super.setXS(getXS()+1);
 	   }
 	   else {
-		   super.setXS(getXS()-3);   
+		   super.setXS(getXS()-1);   
 	   }
    }
 
    public void setYSpeed( int ySpd )
    {
 	   if (this.getYS() >0) {
-		   super.setYS(getYS()+3);
+		   super.setYS(getYS()+1);
 	   }
 	   else {
-		   super.setYS(getYS()-3);   
+		   super.setYS(getYS()-1);   
 	   }
    }
 }
