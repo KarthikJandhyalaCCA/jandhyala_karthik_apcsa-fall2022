@@ -130,11 +130,32 @@ public class PictureTester
     canvas.explore();
   }
   
+  public static void testMyCollage()
+  {
+    Picture canvas = new Picture("src/images/640x480.jpg");
+    canvas.createMyCollage();
+    canvas.explore();
+  }
+  
+  public static void testCopy()
+  {
+    Picture canvas = new Picture("src/images/640x480.jpg");
+    canvas.createCollage2();
+    canvas.explore();
+  }
+  
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("src/images/swan.jpg");
     swan.edgeDetection(10);
+    swan.explore();
+  }
+  
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("src/images/swan.jpg");
+    swan.edgeDetection2(10);
     swan.explore();
   }
   
@@ -154,11 +175,40 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testSetRedToHalfValueInTopHalf()
+  {
+    Picture beach = new Picture("src/images/beach.jpg");
+    beach.explore();
+    beach.setRedToHalfValueInTopHalf();
+    beach.explore();
+  }
+  
+  public static void testGetCountRedOverValue(int val)
+  {
+    Picture beach = new Picture("src/images/beach.jpg");
+    beach.explore();
+    System.out.println(beach.getCountRedOverValue(val));
+  }
+  
+  public static void testGetAverageForColumn( int val )
+  {
+    Picture beach = new Picture("src/images/beach.jpg");
+    beach.explore();
+    System.out.println(beach.getAverageForColumn(val));
+  }
+  
   public static void testFixUnderwater()
   {
     Picture water = new Picture("src/images/water.jpg");
     water.explore();
     water.fixUnderwater();
+    water.explore();
+  }
+  public static void testClearBlueOverValue(int val)
+  {
+    Picture water = new Picture("src/images/beach.jpg");
+    water.explore();
+    water.clearBlueOverValue(val);
     water.explore();
   }
   /** Main method for testing.  Every class can have a main
@@ -185,15 +235,16 @@ public class PictureTester
     //testMirrorArms();
 	//testMirrorGull();
     //testMirrorDiagonal();
-    testCollage();
+    //testCollage();
+	//testMyCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
-    //testGetCountRedOverValue(250);
-    //testSetRedToHalfValueInTopHalf();
-    //testClearBlueOverValue(200);
-    //testGetAverageForColumn(0);
+    ///testGetCountRedOverValue(250);
+    ///testSetRedToHalfValueInTopHalf();
+    ///testClearBlueOverValue(200);
+    ///testGetAverageForColumn(0);
   }
 }
