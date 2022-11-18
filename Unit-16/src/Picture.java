@@ -547,6 +547,24 @@ public class Picture extends SimplePicture
     this.write("collage.jpg");
   }
   
+  public void chromakey()
+  {
+    Picture moonSurface = new Picture("src/images/moon-surface.jpg");
+    Pixel[][] pixelsMark = this.getPixels2D();
+    Pixel[][] pixelsMoon = moonSurface.getPixels2D();
+    
+    for (int r = 0; r< pixelsMark.length; r++)
+    {
+      for (int c = 0; c<pixelsMark[0].length; c++)
+      {
+    	  Pixel pixelObj = pixelsMark[r][c];
+    	  if (pixelObj.getBlue() < 85 && (pixelObj.getRed() < 20 || pixelObj.getGreen() <15)) {
+    		pixelObj.setColor(pixelsMoon[r][c].getColor());
+    	  }
+      }
+    }
+  }
+  
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */

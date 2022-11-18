@@ -204,6 +204,15 @@ public class PictureTester
     water.fixUnderwater();
     water.explore();
   }
+  
+  public static void testChromakey()
+  {
+    Picture mark = new Picture("src/images/blue-mark.jpg");
+    mark.explore();
+    mark.chromakey();
+    mark.explore();
+  }
+  
   public static void testClearBlueOverValue(int val)
   {
     Picture water = new Picture("src/images/beach.jpg");
@@ -242,9 +251,9 @@ public class PictureTester
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
-    ///testGetCountRedOverValue(250);
-    ///testSetRedToHalfValueInTopHalf();
-    ///testClearBlueOverValue(200);
-    ///testGetAverageForColumn(0);
+    //testGetCountRedOverValue(250);
+    //testSetRedToHalfValueInTopHalf();
+    //testClearBlueOverValue(200);
+    //testGetAverageForColumn(0);
   }
 }
