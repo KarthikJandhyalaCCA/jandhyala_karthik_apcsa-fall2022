@@ -231,6 +231,20 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void round()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	pixelObj.setGreen((pixelObj.getGreen()/10)*10);
+        pixelObj.setBlue((pixelObj.getBlue()/10)*10);
+        pixelObj.setRed((pixelObj.getRed()/10)*10);
+      }
+    }
+  }
+  
   public void grayscale()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -313,6 +327,56 @@ public class Picture extends SimplePicture
           bottomPixel.setColor(topPixel.getColor());    
       }
     } 
+  }
+  
+  public void radii()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (int r = 0; r<pixels.length/2; r++)
+    {
+      for (int c = 0; c<pixels[0].length; c++)
+      {
+    	  int rand =(int) (Math.random() * 10);
+    	  Pixel pixelObj = pixels[r][c];
+    	  if ((rand >= 8) && (pixelObj.getAverage() == 0.0)){
+    		  int x =(int) (Math.random() * 10);
+    		  int y =(int) (Math.random() * 10);
+    		  System.out.println(x + " : " + y);
+    		  if ((x%2 == 0)&&(y%2 == 0)) {
+    			  Pixel move = pixels[r-x][c+y];
+    			  if (move.getAverage() == 255.0) {
+    				  Pixel temp = move;
+    				  move.setColor(pixelObj.getColor());
+    				  pixelObj.setColor(temp.getColor());
+    			  }
+    		  }
+    		  else if ((x%2 == 1)&&(y%2 == 0)) {
+    			  Pixel move = pixels[r+x][c+y];
+    			  if (move.getAverage() == 255.0) {
+    				  Pixel temp = move;
+    				  move.setColor(pixelObj.getColor());
+    				  pixelObj.setColor(temp.getColor());
+    			  }
+    		  }
+    		  else if ((x%2 == 0)&&(y%2 == 1)) {
+    			  Pixel move = pixels[r-x][c-y];
+    			  if (move.getAverage() == 255.0) {
+    				  Pixel temp = move;
+    				  move.setColor(pixelObj.getColor());
+    				  pixelObj.setColor(temp.getColor());
+    			  }
+    		  }
+    		  else if ((x%2 == 1)&&(y%2 == 1)) {
+    			  Pixel move = pixels[r+x][c-y];
+    			  if (move.getAverage() == 255.0) {
+    				  Pixel temp = move;
+    				  move.setColor(pixelObj.getColor());
+    				  pixelObj.setColor(temp.getColor());
+    			  }
+    		  }
+    	  }
+      }
+    }
   }
   
   public void mirrorHorizontalBotToTop()
@@ -589,6 +653,96 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
+  }
+  
+  public void sine()
+
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel onePixel = null;
+    Pixel temp = null;
+    int sine;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+    	double r = (double) row;
+    	sine = (int) (Math.sin(r) * 100000000000.0);
+    	System.out.println(sine%width + " for row: " + row);
+    } 
+  }
+  
+  public void sineShift()
+  {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel onePixel = null;
+    Pixel temp = null;
+    int sine;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+    	double r = (double) row;
+    	sine = (int) (Math.sin(r) * 100000000000.0);
+
+    	if(sine>0) {
+            sine = sine % width;
+            for (int t = 0; t<sine; t++) {
+    			temp=pixels[row][width-1];
+        		for(int i=width-1;i>0;i--)
+        		{
+           	 		pixels[row][i].setColor(pixels[row][i-1].getColor());
+        		}
+        		pixels[row][0].setColor(temp.getColor());
+    		}
+    	}
+    	else if (sine<0) {
+    		sine = (sine % width)*(-1);
+    		for (int t = 0; t<sine; t++) {
+    			temp=pixels[row][0];
+        		for(int i=0;i<width-1;i++)
+        		{
+           	 		pixels[row][i].setColor(pixels[row][i+1].getColor());
+        		}
+        		pixels[row][width-1].setColor(temp.getColor());
+    		}
+    	} 
+    } 
+  }
+  
+  public void deSine()
+  {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel onePixel = null;
+    Pixel temp = null;
+    int sine;
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+    	double r = (double) row;
+    	sine = (int) (Math.sin(r) * 100000000000.0);
+
+    	if(sine<0) {
+    		sine = (sine % width)*(-1);
+    		for (int t = 0; t<sine; t++) {
+    			temp=pixels[row][width-1];
+        		for(int i=width-1;i>0;i--)
+        		{
+           	 		pixels[row][i].setColor(pixels[row][i-1].getColor());
+        		}
+        		pixels[row][0].setColor(temp.getColor());
+    		}
+    	}
+    	else if (sine>0) {
+    		sine = (sine % width);
+    		for (int t = 0; t<sine; t++) {
+    			temp=pixels[row][0];
+        		for(int i=0;i<width-1;i++)
+        		{
+           	 		pixels[row][i].setColor(pixels[row][i+1].getColor());
+        		}
+        		pixels[row][width-1].setColor(temp.getColor());
+    		}
+    	} 
+    } 
   }
   
   public void edgeDetection2(int edgeDist)
