@@ -225,7 +225,7 @@ public class PictureTester
 
   {
 
-    Picture pic = new Picture("src/images/msg.jpg");
+    Picture pic = new Picture("src/images/apple_icon.jpg");
     Picture bgd = new Picture("src/images/beach.jpg");
     pic.explore();
     //pic.sine();
@@ -233,10 +233,13 @@ public class PictureTester
     pic.explore();
     pic.radii();
     pic.explore();
-    /*bgd.round();
-    bgd.explore();
+    //bgd.round();
+    //bgd.explore();
+    //bgd.encode(pic);
+    pic.deRadii();
+    pic.explore();
     pic.deSine();
-    pic.explore();*/
+    pic.explore();
   }
   /** Main method for testing.  Every class can have a main
     * method in Java */
