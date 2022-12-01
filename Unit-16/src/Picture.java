@@ -670,9 +670,8 @@ public class Picture extends SimplePicture
     	  int rand =(int) (Math.random() * 10);
     	  Pixel pixelObj = pixels[r][c];
     	  if ((rand == 8) && (pixelObj.getAverage() == 0.0)){
-    		  int x =(int) (Math.random() * 10);
-    		  int y =(int) (Math.random() * 10);
-    		  System.out.println(x + " : " + y);
+    		  int x =(int) (Math.random() * 8);
+    		  int y =(int) (Math.random() * 8);
     		  if ((x%2 == 0)&&(y%2 == 0)&&(r-x <= pixels.length)&&(c+y <= pixels.length)) {
     			  Pixel move = pixels[r-x][c+y];
     			  if (move.getAverage() == 255.0) {
@@ -720,8 +719,49 @@ public class Picture extends SimplePicture
   public void encode(Picture pic) {
 	  Pixel[][] bgd_pixels = this.getPixels2D();
 	  Pixel[][] pic_pixels = pic.getPixels2D();
-	  
+	 for (int r = 0; r<bgd_pixels.length; r++) {
+		 for(int c = 0; c<bgd_pixels[0].length; c++) {
+			 Pixel pixObj = pic_pixels[r][c];
+			 Pixel bgdObj = bgd_pixels[r][c];
+			 if (pixObj.getRed() == 0) {
+				 bgdObj.setGreen(bgdObj.getGreen() + pixObj.getGreen());
+				 bgdObj.setBlue(bgdObj.getBlue() + pixObj.getBlue());
+				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
+				 if (Math.round(average) < average) {
+					 bgdObj.setRed(bgdObj.getRed()-5);
+				 }
+			 }
+			 else {
+				 //double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
+				 //if (Math.round(average) < average) {
+					 bgdObj.setRed(bgdObj.getRed()+9);
+				//}
+			 }
+		 }
+	 }
   }
+  
+  public Picture decode() {
+	  Pixel[][] bgd_pixels = this.getPixels2D();
+	  int height = bgd_pixels.length;
+	  int width = bgd_pixels[0].length;
+	  Picture pic = new Picture(height, width);
+	  Pixel[][] pic_pixels = pic.getPixels2D();
+	 for (int r = 0; r<bgd_pixels.length; r++) {
+		 for(int c = 0; c<bgd_pixels[0].length; c++) {
+			 Pixel pixObj = pic_pixels[r][c];
+			 Pixel bgdObj = bgd_pixels[r][c];
+			 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
+			 if (Math.round(average) < average) {
+				 pixObj.setRed(0);
+				 pixObj.setGreen(bgdObj.getGreen() - ((bgdObj.getGreen()/10)*10));
+				 pixObj.setBlue(bgdObj.getBlue() - ((bgdObj.getBlue()/10)*10));
+			 }
+		 }
+	 }
+	 return pic;
+  }
+  
   public void deRadii()
   {
     Pixel[][] pixels = this.getPixels2D();

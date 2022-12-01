@@ -233,13 +233,15 @@ public class PictureTester
     pic.explore();
     pic.radii();
     pic.explore();
-    //bgd.round();
-    //bgd.explore();
-    //bgd.encode(pic);
-    pic.deRadii();
-    pic.explore();
-    pic.deSine();
-    pic.explore();
+    bgd.round();
+    bgd.explore();
+    bgd.encode(pic);
+    bgd.explore();
+    Picture result = bgd.decode();
+    result.deRadii();
+    result.explore();
+    result.deSine();
+    result.explore();
   }
   /** Main method for testing.  Every class can have a main
     * method in Java */
