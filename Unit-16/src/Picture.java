@@ -733,7 +733,7 @@ public class Picture extends SimplePicture
 				 }
 			 }
 			 else {
-				 //double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
+				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				 //if (Math.round(average) < average) {
 					 bgdObj.setRed(bgdObj.getRed()+9);
 				//}
