@@ -727,8 +727,9 @@ public class Picture extends SimplePicture
 				 bgdObj.setGreen(bgdObj.getGreen() + pixObj.getGreen());
 				 bgdObj.setBlue(bgdObj.getBlue() + pixObj.getBlue());
 				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
-				 if (Math.round(average) < average) {
-					 bgdObj.setRed(bgdObj.getRed()-5);
+				 while (Math.round(average) > average) {
+					 bgdObj.setRed(bgdObj.getRed()-1);
+					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				 }
 			 }
 			 else {
