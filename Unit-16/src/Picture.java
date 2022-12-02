@@ -607,22 +607,6 @@ public class Picture extends SimplePicture
     }
   }
   
-  public void sine()
-
-  {
-    Pixel[][] pixels = this.getPixels2D();
-    Pixel onePixel = null;
-    Pixel temp = null;
-    int sine;
-    int width = pixels[0].length;
-    for (int row = 0; row < pixels.length; row++)
-    {
-    	double r = (double) row;
-    	sine = (int) (Math.sin(r) * 100000000000.0);
-    	System.out.println(sine%width + " for row: " + row);
-    } 
-  }
-  
   public void sineShift()
   {
 	Pixel[][] pixels = this.getPixels2D();
@@ -633,7 +617,7 @@ public class Picture extends SimplePicture
     for (int row = 0; row < pixels.length; row++)
     {
     	double r = (double) row;
-    	sine = (int) (Math.sin(r) * 100000000000.0);
+    	sine = (int) (Math.sin(r) * 1000000.0);
 
     	if(sine>0) {
             sine = sine % width;
@@ -672,7 +656,7 @@ public class Picture extends SimplePicture
     	  if ((rand == 8) && (pixelObj.getAverage() == 0.0)){
     		  int x =(int) (Math.random() * 8);
     		  int y =(int) (Math.random() * 8);
-    		  if ((x%2 == 0)&&(y%2 == 0)&&(r-x <= pixels.length)&&(c+y <= pixels.length)) {
+    		  if ((x%2 == 0)&&(y%2 == 0)&&(r-x <= pixels.length)&&(c+y <= pixels.length)&&(r-x >= 0)&&(c+y >= 0)) {
     			  Pixel move = pixels[r-x][c+y];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(x);
@@ -682,7 +666,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			  }
     		  }
-    		  else if ((x%2 == 1)&&(y%2 == 0)&&(r+x <= pixels.length)&&(c+y <= pixels.length)) {
+    		  else if ((x%2 == 1)&&(y%2 == 0)&&(r+x <= pixels.length)&&(c+y <= pixels.length)&&(r+x >= 0)&&(c+y >= 0)) {
     			  Pixel move = pixels[r+x][c+y];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(x);
@@ -692,7 +676,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			  }
     		  }
-    		  else if ((x%2 == 0)&&(y%2 == 1)&&(r-x <= pixels.length)&&(c-y <= pixels.length)) {
+    		  else if ((x%2 == 0)&&(y%2 == 1)&&(r-x <= pixels.length)&&(c-y <= pixels.length)&&(r-x >= 0)&&(c-y >= 0)) {
     			  Pixel move = pixels[r-x][c-y];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(x);
@@ -702,7 +686,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			  }
     		  }
-    		  else if ((x%2 == 1)&&(y%2 == 1)&&(r+x <= pixels.length)&&(c-y <= pixels.length)) {
+    		  else if ((x%2 == 1)&&(y%2 == 1)&&(r+x <= pixels.length)&&(c-y <= pixels.length)&&(r+x >= 0)&&(c-y >= 0)) {
     			  Pixel move = pixels[r+x][c-y];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(x);
@@ -718,24 +702,129 @@ public class Picture extends SimplePicture
   }
   public void encode(Picture pic) {
 	  Pixel[][] bgd_pixels = this.getPixels2D();
-	  Pixel[][] pic_pixels = pic.getPixels2D();
-	 for (int r = 0; r<bgd_pixels.length; r++) {
+	  Pixel[][] pixels = pic.getPixels2D();
+	  
+	  //SINE_SHIFT
+	    Pixel onePixel = null;
+	    Pixel temp = null;
+	    int sine;
+	    int width = pixels[0].length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	    	double r = (double) row;
+	    	sine = (int) (Math.sin(r) * 1000000.0);
+
+	    	if(sine>0) {
+	            sine = sine % width;
+	            for (int t = 0; t<sine; t++) {
+	    			temp=pixels[row][width-1];
+	        		for(int i=width-1;i>0;i--)
+	        		{
+	           	 		pixels[row][i].setColor(pixels[row][i-1].getColor());
+	        		}
+	        		pixels[row][0].setColor(temp.getColor());
+	    		}
+	    	}
+	    	else if (sine<0) {
+	    		sine = (sine % width)*(-1);
+	    		for (int t = 0; t<sine; t++) {
+	    			temp=pixels[row][0];
+	        		for(int i=0;i<width-1;i++)
+	        		{
+	           	 		pixels[row][i].setColor(pixels[row][i+1].getColor());
+	        		}
+	        		pixels[row][width-1].setColor(temp.getColor());
+	    		}
+	    	} 
+	    } 
+	  
+	  //RADII
+	    
+	    for (int r = 0; r<pixels.length; r++)
+	    {
+	      for (int c = 0; c<pixels[0].length; c++)
+	      {
+	    	  int rand =(int) (Math.random() * 10);
+	    	  Pixel pixelObj = pixels[r][c];
+	    	  if ((rand == 8) && (pixelObj.getAverage() == 0.0)){
+	    		  int x =(int) (Math.random() * 8);
+	    		  int y =(int) (Math.random() * 8);
+	    		  if ((x%2 == 0)&&(y%2 == 0)&&(r-x <= pixels.length)&&(c+y <= pixels.length)&&(r-x >= 0)&&(c+y >= 0)) {
+	    			  Pixel move = pixels[r-x][c+y];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(x);
+	    				  pixelObj.setBlue(y);
+	    				  Pixel temp1 = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    		  else if ((x%2 == 1)&&(y%2 == 0)&&(r+x <= pixels.length)&&(c+y <= pixels.length)&&(r+x >= 0)&&(c+y >= 0)) {
+	    			  Pixel move = pixels[r+x][c+y];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(x);
+	    				  pixelObj.setBlue(y);
+	    				  Pixel temp1 = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    		  else if ((x%2 == 0)&&(y%2 == 1)&&(r-x <= pixels.length)&&(c-y <= pixels.length)&&(r-x >= 0)&&(c-y >= 0)) {
+	    			  Pixel move = pixels[r-x][c-y];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(x);
+	    				  pixelObj.setBlue(y);
+	    				  Pixel temp1 = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    		  else if ((x%2 == 1)&&(y%2 == 1)&&(r+x <= pixels.length)&&(c-y <= pixels.length)&&(r+x >= 0)&&(c-y >= 0)) {
+	    			  Pixel move = pixels[r+x][c-y];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(x);
+	    				  pixelObj.setBlue(y);
+	    				  Pixel temp1 = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    	  }
+	      }
+	    }
+	    
+	    //ENCODE
+	    
+	    for (Pixel[] rowArray : bgd_pixels)
+	    {
+	      for (Pixel background : rowArray)
+	      {
+	    	  background.setGreen((background.getGreen()/10)*10);
+	    	  background.setBlue((background.getBlue()/10)*10);
+	    	  background.setRed((background.getRed()/10)*10);
+	      }
+	    }
+	  
+	 for (int r = 0; r<340; r++) {
 		 for(int c = 0; c<bgd_pixels[0].length; c++) {
-			 Pixel pixObj = pic_pixels[r][c];
+			 Pixel pixObj = pixels[r][c];
 			 Pixel bgdObj = bgd_pixels[r][c];
 			 if (pixObj.getRed() == 0) {
 				 bgdObj.setGreen(bgdObj.getGreen() + pixObj.getGreen());
 				 bgdObj.setBlue(bgdObj.getBlue() + pixObj.getBlue());
-				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
-				 while (Math.round(average) > average) {
+				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
+				 while ((double) Math.round(average) > average) {
+					 System.out.println(r + " " + c + " Average: " + average + " Rounded: " + Math.round(average)); 
 					 bgdObj.setRed(bgdObj.getRed()-1);
 					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				 }
 			 }
 			 else {
-				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
-				 while (Math.round(average) < average) {
+				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
+				 while ((double) Math.round(average) < average) {
+					 System.out.println(r + " " + c + " Average: " + average + " Rounded: " + Math.round(average));
 					 bgdObj.setRed(bgdObj.getRed()+1);
+					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				}
 			 }
 		 }
@@ -747,19 +836,113 @@ public class Picture extends SimplePicture
 	  int height = bgd_pixels.length;
 	  int width = bgd_pixels[0].length;
 	  Picture pic = new Picture(height, width);
-	  Pixel[][] pic_pixels = pic.getPixels2D();
+	  Pixel[][] pixels = pic.getPixels2D();
 	 for (int r = 0; r<bgd_pixels.length; r++) {
 		 for(int c = 0; c<bgd_pixels[0].length; c++) {
-			 Pixel pixObj = pic_pixels[r][c];
+			 Pixel pixObj = pixels[r][c];
 			 Pixel bgdObj = bgd_pixels[r][c];
-			 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
-			 if (Math.round(average) < average) {
+			 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
+			 if ((double) Math.round(average) < average) {
 				 pixObj.setRed(0);
 				 pixObj.setGreen(bgdObj.getGreen() - ((bgdObj.getGreen()/10)*10));
 				 pixObj.setBlue(bgdObj.getBlue() - ((bgdObj.getBlue()/10)*10));
 			 }
 		 }
 	 }
+	 
+	 //DERADII
+	 
+	 for (int r = 0; r<pixels.length; r++)
+	    {
+	      for (int c = 0; c<pixels[0].length; c++)
+	      {
+	    	  Pixel pixelObj = pixels[r][c];
+	    	  int red = pixelObj.getRed();
+	    	  int green = pixelObj.getGreen();
+	    	  int blue = pixelObj.getBlue();    	  
+	    	  if ((red == 0)) {
+	    		  if ((green%2 == 0)&&(blue%2 == 0)&&(r+green <= pixels.length)&&(c-blue <= pixels.length)&&(r+green >= 0)&&(c-blue >= 0)) {
+	    			  Pixel move = pixels[r+green][c-blue];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(0);
+	    				  pixelObj.setBlue(0);
+	    				  Pixel temp = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    		  else if ((green%2 == 1)&&(blue%2 == 0)&&(r-green <= pixels.length)&&(c-blue <= pixels.length)&&(r-green >= 0)&&(c-blue >= 0)) {
+	    			  Pixel move = pixels[r-green][c-blue];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(0);
+	    				  pixelObj.setBlue(0);
+	    				  Pixel temp = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			  }
+	    		  }
+	    		  else if ((green%2 == 0)&&(blue%2 == 1)&&(r+green <= pixels.length)&&(c+blue <= pixels.length)&&(r+green >= 0)&&(c+blue >= 0)) {
+	    			  Pixel move = pixels[r+green][c+blue];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(0);
+	    				  pixelObj.setBlue(0);
+	    				  Pixel temp = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			 }
+	    		  }
+	    		  else if ((green%2 == 1)&&(blue%2 == 1)&&(r-green <= pixels.length)&&(c+blue <= pixels.length)&&(r-green >= 0)&&(c+blue >= 0)) {
+	    			  Pixel move = pixels[r-green][c+blue];
+	    			  if (move.getAverage() == 255.0) {
+	    				  pixelObj.setGreen(0);
+	    				  pixelObj.setBlue(0);
+	    				  Pixel temp = move;
+	    				  move.setColor(pixelObj.getColor());
+	    				  pixelObj.setColor(temp.getColor());
+	    			 }
+	    		  }
+	    	  }
+	      }
+	    }
+	 
+	 
+	 //DESINE
+	 
+	 Pixel onePixel = null;
+	    Pixel temp = null;
+	    int sine;
+	    int width1 = pixels[0].length;
+	    for (int row = 0; row < pixels.length; row++)
+	    {
+	    	double r = (double) row;
+	    	sine = (int) (Math.sin(r) * 1000000.0);
+
+	    	if(sine<0) {
+	    		sine = (sine % width1)*(-1);
+	    		for (int t = 0; t<sine; t++) {
+	    			temp=pixels[row][width1-1];
+	        		for(int i=width1-1;i>0;i--)
+	        		{
+	           	 		pixels[row][i].setColor(pixels[row][i-1].getColor());
+	        		}
+	        		pixels[row][0].setColor(temp.getColor());
+	    		}
+	    	}
+	    	else if (sine>0) {
+	    		sine = (sine % width1);
+	    		for (int t = 0; t<sine; t++) {
+	    			temp=pixels[row][0];
+	        		for(int i=0;i<width1-1;i++)
+	        		{
+	           	 		pixels[row][i].setColor(pixels[row][i+1].getColor());
+	        		}
+	        		pixels[row][width1-1].setColor(temp.getColor());
+	    		}
+	    	} 
+	    } 
+	 
+	 
+	 
 	 return pic;
   }
   
@@ -775,7 +958,7 @@ public class Picture extends SimplePicture
     	  int green = pixelObj.getGreen();
     	  int blue = pixelObj.getBlue();    	  
     	  if ((red == 0)) {
-    		  if ((green%2 == 0)&&(blue%2 == 0)&&(r+green <= pixels.length)&&(c-blue <= pixels.length)) {
+    		  if ((green%2 == 0)&&(blue%2 == 0)&&(r+green <= pixels.length)&&(c-blue <= pixels.length)&&(r+green >= 0)&&(c-blue >= 0)) {
     			  Pixel move = pixels[r+green][c-blue];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(0);
@@ -785,7 +968,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			  }
     		  }
-    		  else if ((green%2 == 1)&&(blue%2 == 0)&&(r-green <= pixels.length)&&(c-blue <= pixels.length)) {
+    		  else if ((green%2 == 1)&&(blue%2 == 0)&&(r-green <= pixels.length)&&(c-blue <= pixels.length)&&(r-green >= 0)&&(c-blue >= 0)) {
     			  Pixel move = pixels[r-green][c-blue];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(0);
@@ -795,7 +978,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			  }
     		  }
-    		  else if ((green%2 == 0)&&(blue%2 == 1)&&(r+green <= pixels.length)&&(c+blue <= pixels.length)) {
+    		  else if ((green%2 == 0)&&(blue%2 == 1)&&(r+green <= pixels.length)&&(c+blue <= pixels.length)&&(r+green >= 0)&&(c+blue >= 0)) {
     			  Pixel move = pixels[r+green][c+blue];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(0);
@@ -805,7 +988,7 @@ public class Picture extends SimplePicture
     				  pixelObj.setColor(temp.getColor());
     			 }
     		  }
-    		  else if ((green%2 == 1)&&(blue%2 == 1)&&(r-green <= pixels.length)&&(c+blue <= pixels.length)) {
+    		  else if ((green%2 == 1)&&(blue%2 == 1)&&(r-green <= pixels.length)&&(c+blue <= pixels.length)&&(r-green >= 0)&&(c+blue >= 0)) {
     			  Pixel move = pixels[r-green][c+blue];
     			  if (move.getAverage() == 255.0) {
     				  pixelObj.setGreen(0);
@@ -830,7 +1013,7 @@ public class Picture extends SimplePicture
     for (int row = 0; row < pixels.length; row++)
     {
     	double r = (double) row;
-    	sine = (int) (Math.sin(r) * 100000000000.0);
+    	sine = (int) (Math.sin(r) * 1000000.0);
 
     	if(sine<0) {
     		sine = (sine % width)*(-1);
