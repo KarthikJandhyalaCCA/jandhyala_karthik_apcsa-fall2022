@@ -226,7 +226,7 @@ public class PictureTester
   {
 
     Picture pic = new Picture("src/images/apple_icon.jpg");
-    Picture bgd = new Picture("src/images/beach.jpg");
+    Picture bgd = new Picture("src/images/moon-surface.jpg");
     pic.explore();
     bgd.encode(pic);
     bgd.explore();

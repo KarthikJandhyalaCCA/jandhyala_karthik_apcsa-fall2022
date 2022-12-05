@@ -823,7 +823,7 @@ public class Picture extends SimplePicture
 				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
 				 while ((double) Math.round(average) < average) {
 					 System.out.println(r + " " + c + " Average: " + average + " Rounded: " + Math.round(average));
-					 bgdObj.setRed(bgdObj.getRed()+1);
+					 bgdObj.setRed(bgdObj.getRed()-1);
 					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				}
 			 }
