@@ -805,7 +805,7 @@ public class Picture extends SimplePicture
 	      }
 	    }
 	  
-	 for (int r = 0; r<340; r++) {
+	 for (int r = 0; r<bgd_pixels.length; r++) {
 		 for(int c = 0; c<bgd_pixels[0].length; c++) {
 			 Pixel pixObj = pixels[r][c];
 			 Pixel bgdObj = bgd_pixels[r][c];
@@ -814,7 +814,6 @@ public class Picture extends SimplePicture
 				 bgdObj.setBlue(bgdObj.getBlue() + pixObj.getBlue());
 				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
 				 while ((double) Math.round(average) > average) {
-					 System.out.println(r + " " + c + " Average: " + average + " Rounded: " + Math.round(average)); 
 					 bgdObj.setRed(bgdObj.getRed()-1);
 					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				 }
@@ -822,7 +821,6 @@ public class Picture extends SimplePicture
 			 else {
 				 double average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3.0;
 				 while ((double) Math.round(average) < average) {
-					 System.out.println(r + " " + c + " Average: " + average + " Rounded: " + Math.round(average));
 					 bgdObj.setRed(bgdObj.getRed()-1);
 					 average = (bgdObj.getRed() + bgdObj.getGreen() + bgdObj.getBlue())/3;
 				}
