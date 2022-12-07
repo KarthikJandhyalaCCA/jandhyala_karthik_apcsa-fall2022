@@ -16,7 +16,7 @@ public class Ship extends MovingThing
 
 	public Ship()
 	{
-		this(10,10,10,10,10);
+		this(100,100,100,100,10);
 	}
 
 	public Ship(int x, int y)
@@ -41,7 +41,7 @@ public class Ship extends MovingThing
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error!!! Go to Ship and at Line 33");
+			System.out.println("Error!!! Go to Ship and at Line 39");
 		}
 	}
 
@@ -55,16 +55,16 @@ public class Ship extends MovingThing
 
 	public void move(String direction)
 	{
-		if (direction.equals("W")) {
+		if (direction.equals("DOWN")) {
 			setY(getY() + getSpeed());
 		}
-		else if (direction.equals("A")) {
+		else if (direction.equals("LEFT")) {
 			setX(getX() - getSpeed());
 		}
-		else if (direction.equals("S")) {
+		else if (direction.equals("UP")) {
 			setY(getY() - getSpeed());
 		}
-		else if (direction.equals("D")) {
+		else if (direction.equals("RIGHT")) {
 			setX(getX() + getSpeed());
 		}
 		
@@ -72,7 +72,7 @@ public class Ship extends MovingThing
 
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()
