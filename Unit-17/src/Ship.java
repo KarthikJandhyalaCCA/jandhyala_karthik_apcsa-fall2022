@@ -41,7 +41,7 @@ public class Ship extends MovingThing
 		}
 		catch(Exception e)
 		{
-			System.out.println("Error!!! Go to Ship and at Line 39");
+			System.out.println("Error!!! Go to Ship");
 		}
 	}
 

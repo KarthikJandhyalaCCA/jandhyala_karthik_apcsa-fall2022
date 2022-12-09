@@ -19,6 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private Ammo ammo;
 
 	/* uncomment once you are ready for this part
 	 *
@@ -39,6 +40,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//Ship, Alien
 		
 		ship = new Ship();
+		alienOne = new Alien(100, 50, 50, 50, 3);
+		alienTwo = new Alien(600, 50, 50, 50, 4);
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -73,6 +76,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		
 		ship.draw(graphToBack);
+		alienOne.draw(graphToBack);
+		alienTwo.draw(graphToBack);
 
 		if(keys[0] == true)
 		{
@@ -92,6 +97,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(keys[3] == true)
 		{
 			ship.move("DOWN");
+		}
+		if(keys[4] == true)
+		{
+			ammo = new Ammo(ship.getX(), ship.getY(), 2);
+			ammo.draw(graphToBack);
+			ammo.move("SHOOT!!!");
 		}
 
 		//add code to move Ship, Alien, etc.
