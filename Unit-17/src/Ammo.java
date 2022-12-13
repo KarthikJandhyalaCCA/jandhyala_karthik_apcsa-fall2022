@@ -52,16 +52,12 @@ public class Ammo extends MovingThing
 
 	public void draw( Graphics window )
 	{
-		window.drawImage(image,getX(),getY(),30,30,null);
+		window.drawImage(image,getX(),getY(),10, 10,null);
 	}
 	
 	public void move( String direction )
 	{
-		if (direction.equals("SHOOT!!!")) {
-			while (getX() > 0) {
-				setX(getX() - getSpeed());
-			}
-		}
+		setY(getY() - getSpeed());
 	}
 
 	public String toString()
