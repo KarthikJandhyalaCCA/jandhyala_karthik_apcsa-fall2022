@@ -14,6 +14,7 @@ public class Ammo extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private boolean exists = false;
 
 	public Ammo()
 	{
@@ -49,10 +50,20 @@ public class Ammo extends MovingThing
 	{
 	   return speed;
 	}
+	
+	public void setExist(boolean b)
+	{
+	   exists = b;
+	}
+
+	public boolean getExist()
+	{
+	   return exists;
+	}
 
 	public void draw( Graphics window )
 	{
-		window.drawImage(image,getX(),getY(),10, 10,null);
+		window.fillRect(getX()+4,getY(),10, 15);
 	}
 	
 	public void move( String direction )
