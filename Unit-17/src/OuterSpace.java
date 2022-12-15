@@ -20,11 +20,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Alien alienOne;
 	private Alien alienTwo;
 	private Ammo ammo;
-	int count = 0;
+	private int count = 0;
+	private int shottimer;
 
 	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;*/
+	 */
+   private AlienHorde horde;
 	private Bullets shots;
 
 	private boolean[] keys;
@@ -35,10 +36,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		setBackground(Color.black);
 
 		keys = new boolean[5];
+		
+		shottimer = 0;
 
 		//instantiate other instance variables
 		//Ship, Alien
-		
+		horde = new AlienHorde(5);
 		ship = new Ship();
 		alienOne = new Alien(100, 50, 50, 50, 3);
 		alienTwo = new Alien(600, 50, 50, 50, 4);
@@ -78,9 +81,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
-
+		//alienOne.draw(graphToBack);
+		//alienTwo.draw(graphToBack);
+		horde.drawEmAll(graphToBack);
+		horde.moveEmAll();
+		
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
@@ -103,8 +108,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(keys[4] == true)
 		{
 			boolean check = true;
-			if (check) {
+			if (check && shottimer>75) {
 				shots.add(new Ammo((ship.getX()+40), ship.getY(), 2));
+				shottimer = 0;
 			}
 			//shots.getList().get(count).setExist(true);
 			//ammo.setX(ship.getX()+40);
@@ -112,17 +118,21 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			ammo.setExist(true);
 		}
 		
+		
 		if (ammo.getExist()) {
 			shots.drawEmAll(graphToBack);
 			shots.moveEmAll();
+			shottimer++;
 			//Ammo ammo = shots.getList().get(count);
 			//ammo.draw(graphToBack);
 			//ammo.move("SHOOT");
 		}
-
+		
+		//alienOne.move("Move");
+		//alienTwo.move("Move");
 		//add code to move Ship, Alien, etc.
 
-
+		horde.removeDeadOnes(shots.getList());
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
 

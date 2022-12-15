@@ -16,7 +16,7 @@ public class Alien extends MovingThing
 
 	public Alien()
 	{
-		this(0,0,30,30,0);
+		this(100, 50, 50, 50, 3);
 	}
 
 	public Alien(int x, int y)
@@ -57,19 +57,22 @@ public class Alien extends MovingThing
 
    public void move(String direction)
 	{
-	   /*if (direction.equals("DOWN")) {
-			setY(getY() + getSpeed());
-		}
-		else if (direction.equals("LEFT")) {
-			setX(getX() - getSpeed());
-		}
-		else if (direction.equals("UP")) {
-			setY(getY() - getSpeed());
-		}
-		else if (direction.equals("RIGHT")) {
+	   /*boolean moveLeft = true;
+	   if (getX()>5&&getX()<400) {
+		   moveLeft = true;
+	   }
+	   else {
+		   moveLeft = false;
+	   }
+	   if(moveLeft) {
+		   setX(getX()-getSpeed());
+
+	   }
+	   else {
+		   setX(getX()+getSpeed());
+
+	   }*/
 			setX(getX() + getSpeed());
-		}*/
-	   System.out.println("Update Alien Move");
 	}
 
 	public void draw( Graphics window )
